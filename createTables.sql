@@ -1,0 +1,1 @@
+CREATE TABLE `IT350`.`User` (`username` VARCHAR(40) NOT NULL , `password` VARCHAR(40) NOT NULL , `firstname` VARCHAR(40) NOT NULL , `lastname` VARCHAR(40) NOT NULL , `phonenumber` VARCHAR(40) NOT NULL , `address` VARCHAR(255) NOT NULL , `email` VARCHAR(40) NOT NULL , `privledge` INT NOT NULL DEFAULT '0' , PRIMARY KEY (`username`)) ENGINE = InnoDB;

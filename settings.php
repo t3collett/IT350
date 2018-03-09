@@ -1,7 +1,7 @@
 <?php
 $ipAddress = "localhost";
-$database = "IT210";
-$userTable = "Users";
-$dbPassword = "1234";
-$dbUser = "lab3A";
+$database = "IT350";
+$userTable = "User";
+$dbPassword = "123";
+$dbUser = "fjellAdmin";
 ?>

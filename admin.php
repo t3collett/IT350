@@ -14,7 +14,7 @@ if ($_SESSION['logged_in'] == NULL) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>Contact</title>
+	<title>Admin</title>
 
     <!-- Bootstrap -->
     <?php 
@@ -26,9 +26,26 @@ if ($_SESSION['logged_in'] == NULL) {
 
   </head>
   <body>
-<li id=\"logout\"><a href=\"logout.php\"> Logout </a></li> 
+<a href=\"logout.php\"> Logout </a>
+<form id="userInfo" action="userQuery.php" method="post" style="margin-left: 10%">
+<h2>UsertableQuery</h2>
+<select name="username">
+<?php
+	$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+          if($db_handle){
+            $query = "select username from ".$userTable.";" ;
+            $result = mysqli_query($db_handle,$query);
+	foreach ($result as $username){
+		echo '<option value="'.$username.'">'.$username.'</option>';
+	}
+?>
+</select>
+<input id="Submit" type="Submit" value="Submit" >
+</form>
    
+
   <form  id="mail" action="mail.php" method="post" style="margin-left: 20%">
+
         <h2>Mail</h2>
         <h3>Name: </h3>
         <?php
