@@ -32,7 +32,7 @@ if(isset($_POST)){
 			exit();
 
 		} else {
-			$query = "INSERT INTO `User` (`username`, `password`, `firstname`,`lastname`, `email`,phone) VALUES ('".$username."', SHA1('".$password."'), '".$firstname."','".$lastname."', '".$email."');";
+			$query = "INSERT INTO `User` (`username`, `password`, `firstname`,`lastname`, `email`) VALUES ('".$username."', SHA1('".$password."'), '".$firstname."','".$lastname."', '".$email."');";
 		    mysqli_query($db_handle,$query);
 		   	$result = mysqli_query($db_handle,"select username from IT350.".$userTable." where username = '".$username. "';");
 		   	while ($row = mysqli_fetch_row($result))

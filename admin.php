@@ -22,53 +22,47 @@ if ($_SESSION['logged_in'] == NULL) {
     error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
      ?>
-
-
   </head>
   <body>
-<a href=\"logout.php\"> Logout </a>
-<form id="userInfo" action="userQuery.php" method="post" style="margin-left: 10%">
-<h2>UsertableQuery</h2>
-<select name="username">
-<?php
-	$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
-          if($db_handle){
-            $query = "select username from ".$userTable.";" ;
-            $result = mysqli_query($db_handle,$query);
-	foreach ($result as $username){
-		echo '<option value="'.$username.'">'.$username.'</option>';
-	}
-?>
-</select>
-<input id="Submit" type="Submit" value="Submit" >
-</form>
-   
+	<a href="logout.php\"> Logout </a>
+	<form id="userInfo" action="userQuery.php" method="post" style="margin-left: 1%">
+		<h3>UsertableQuery</h3>
+		<select name="username">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = "select username from IT350.".$userTable.";" ;
+        	$result = mysqli_query($db_handle,$query);
+    	}
+		foreach ($result as $username){
+			echo '<option value="'.$username['username'].'">'.$username['username'].'</option>';
+		}
+	?>
+	</select>
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+	<form id="updatePrivilege" action="updatePrivilege.php" method="post" style="margin-left: 1%">
+		<h3>Update privilege</h3>
+		<select name="username">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = "select username from IT350.".$userTable.";" ;
+        	$result = mysqli_query($db_handle,$query);
+    	}
+		foreach ($result as $username){
+			echo '<option value="'.$username['username'].'">'.$username['username'].'</option>';
+		}
+	?>
 
-  <form  id="mail" action="mail.php" method="post" style="margin-left: 20%">
+		</select>
+		<select name="privilege">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+		<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
 
-        <h2>Mail</h2>
-        <h3>Name: </h3>
-        <?php
-          $db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
-          if($db_handle){
-            $query = "select name from IT210.".$userTable." where userId = '".$_SESSION['logged_in']. "';" ;
-            $result = mysqli_query($db_handle,$query);
-            //print_r($result);
-            $row = $result->fetch_assoc();
-            echo '<input type="text" id="name" name="name" value = '.$row['name'].'>';
-          }
-        ?>
-        <h3>subject: </h3>
-        <input type="text" id="subject" name="subject">
-        <h3>Message: </h3>
-        <textarea rows="4" cols="50" id="message" name="message"></textarea><br>
-        <input id="Submit" type="Submit" value="Submit" >
-      </form>
-    <script>
-		$(document).ready(function () {
-		$('.dropdown-toggle').dropdown();
-    $('#contactpg').addClass('active');
-		});
-	</script>
   </body>
 </html>
