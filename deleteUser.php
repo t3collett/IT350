@@ -12,23 +12,25 @@ if(isset($_POST)){
 	 if($db_handle){
 	 	if(!isset($_POST['username'])){
 	 		mysqli_close($db_handle);
-			header("location: register.php");
+			header("location: admin.php");
 	 		exit();
 	 	}
-	 	$username = filter_var($_POST['username'],
+	 	$cleanusername = filter_var($_POST['username'],
 	 								FILTER_SANITIZE_STRING);
-	 	$username = htmlentities($username);
-	 	mysqli_set_charset($db_handle, "utf8");
-	 	$query = $db_handle->prepare('select username,firstname,lastname,phonenumber,address, email,privilege from User where username = ?;');
-	 	$query->bind_param('s',$username);
-	 	$query->execute();
-	 	$query->store_result();
-	 	$query->bind_result($un,$fn,$ln,$pn,$add,$em,$prv);
-	 	while( $query->fetch()){
-	 		echo "$un,\t$fn,\t$ln,\t$pn,\t$add,\t$em,\t$prv";
+	 	$username = htmlentities($cleanusername);
+	 	if(strlen($username) > 40){
+	 		mysqli_close($db_handle);
+			header("location: admin.php");
+	 		exit();
 	 	}
+	 	mysqli_set_charset($db_handle, "utf8");
+	 	$query = $db_handle->prepare('delete from User where username = ?;') ;
+	 	$query->bind_param('s',$username);
+
+	 	$result = $query->execute();
 	 	$query->close();
 	 	mysqli_close($db_handle);
 	 }
 }
+header("Location: admin.php");
 ?>

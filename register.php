@@ -15,7 +15,10 @@
    <h1 style="margin-left: 2%;">Register</h1>
   <form id="register" action="reg.php" method="post">
 
-  	Name:<br><input type="text" name="name" required><br>
+  	First Name:<br><input type="text" name="firstname" required><br>
+    Last Name:<br><input type="text" name="lastname" required><br>
+    Phone number:<br><input type="text" name="phoneNumber" required><br>
+    Address:<br><input type="text" name="address" required><br>
 	User Name:<br> <input type="text" name="user_name" required><br>
 	Email: <br><input type="email" name="email" required><br>
 

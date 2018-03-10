@@ -10,29 +10,25 @@ if(isset($_POST)){
 	$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
 
 	if($db_handle){
-	 	if(!isset($_POST['username']) ||
-	 		!isset($_POST['privilege'])
+	 	if(!isset($_POST['categoryName'])
 	 		){
 	 		mysqli_close($db_handle);
 			header("location: admin.php");
 	 		exit();
 	 	}
 
-	 	$cleanusername = filter_var($_POST['username'],
+	 	$cleanusername = filter_var($_POST['categoryName'],
 	 								FILTER_SANITIZE_STRING);
-	 	$cleanusername = htmlentities($cleanusername);
-	 	$cleanprivilege = filter_var($_POST['privilege'],
-									FILTER_SANITIZE_NUMBER_INT);
-	 	if(strlen($cleanusername) > 40
-	 		|| $cleanprivilege > PHP_INT_MAX){
+	 	$categoryName = htmlentities($cleanusername);
+	 	if(strlen($categoryName) > 40){
 			mysqli_close($db_handle);
 			header("location: admin.php");
 	 		exit();	 	
 	 	}
 
 	 	mysqli_set_charset($db_handle, "utf8");
-	 	$query = $db_handle->prepare('update User set privilege = ? where User.username = ?;' );
-	 	$query->bind_param('is',$cleanprivilege,$cleanusername);
+	 	$query = $db_handle->prepare('INSERT INTO Category (`name`) VALUE (?);' );
+	 	$query->bind_param('s',$categoryName);
 	 	$query->execute();
 	 	//$result = mysqli_query($db_handle,$query);
 	 	mysqli_close($db_handle);

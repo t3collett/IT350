@@ -5,17 +5,58 @@ if(isset($_POST)){
 	$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
 
 	 if($db_handle){
-	 	if($_POST['name']== ''){
+	 	if(!isset($_POST['firstname'])||
+	 		!isset($_POST['lastname'])||
+	 		!isset($_POST['user_name'])||
+	 		!isset($_POST['email'])||
+	 		!isset($_POST['password'])||
+	 		!isset($_POST['password_two'])||
+	 		!isset($_POST['phoneNumber'])||
+	 		!isset($_POST['address'])){
 	 		mysqli_close($db_handle);
+			//print_r($_POST);
 			header("location: register.php");
 	 		exit();
 	 	}
-	 	$firstname = $_POST['name'];
-		$lastname = "fakename";//$_POST['lastname'];
-	 	$username=$_POST['user_name'];
-	 	$email = $_POST['email'];
-		$password=$_POST['password'];
-		$password_two = $_POST['password_two'];
+	 	$firstname = filter_var($_POST['firstname'],
+	 								FILTER_SANITIZE_STRING);
+	 		 	$firstname = htmlentities($firstname);
+
+		$lastname = filter_var($_POST['lastname'],
+	 								FILTER_SANITIZE_STRING);//$_POST['lastname'];
+	 	$lastname = htmlentities($lastname);
+	 	$username=filter_var($_POST['user_name'],
+	 								FILTER_SANITIZE_STRING);
+	 	$username = htmlentities($username);
+
+	 	$phoneNumber = filter_var($_POST['phoneNumber'],
+	 								FILTER_SANITIZE_STRING);
+	 	$phoneNumber = htmlentities($phoneNumber);
+		$address =filter_var($_POST['address'],
+	 								FILTER_SANITIZE_STRING);
+		$address = htmlentities($address);
+	 	$email = filter_var(filter_var($_POST['email'],
+	 								FILTER_SANITIZE_EMAIL),
+	 						FILTER_VALIDATE_EMAIL);
+	 	$email = htmlentities($email);
+		$password= filter_var($_POST['password'],
+	 								FILTER_SANITIZE_STRING);
+		$password = htmlentities($password);
+		$password_two = filter_var($_POST['password_two'],
+	 								FILTER_SANITIZE_STRING);
+		$password_two = htmlentities($password_two);
+		if(strlen($firstname) > 40 ||
+			strlen($lastname) > 40 ||
+			strlen($username) > 40 ||
+			strlen($email) > 40 ||
+			strlen($phoneNumber) > 40 ||
+			strlen($address) > 255){
+			mysqli_close($db_handle);
+			//print_r($_POST);
+			header("location: register.php");
+	 		exit();
+		}
+
 
 		if($password != $password_two){
 			echo "<h1 style='color: red'> Your Passwords don't match</h1>";
@@ -32,7 +73,7 @@ if(isset($_POST)){
 			exit();
 
 		} else {
-			$query = "INSERT INTO `User` (`username`, `password`, `firstname`,`lastname`, `email`) VALUES ('".$username."', SHA1('".$password."'), '".$firstname."','".$lastname."', '".$email."');";
+			$query = "INSERT INTO `User` (`username`, `password`, `firstname`,`lastname`, `email`,`address`,`phoneNumber`) VALUES ('".$username."', SHA1('".$password."'), '".$firstname."','".$lastname."', '".$email."','".$address."','".$phoneNumber."');";
 		    mysqli_query($db_handle,$query);
 		   	$result = mysqli_query($db_handle,"select username from IT350.".$userTable." where username = '".$username. "';");
 		   	while ($row = mysqli_fetch_row($result))

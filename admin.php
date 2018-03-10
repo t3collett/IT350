@@ -54,7 +54,6 @@ if ($_SESSION['logged_in'] == NULL) {
 			echo '<option value="'.$username['username'].'">'.$username['username'].'</option>';
 		}
 	?>
-
 		</select>
 		<select name="privilege">
 			<option value="0">0</option>
@@ -63,6 +62,76 @@ if ($_SESSION['logged_in'] == NULL) {
 		</select>
 		<input id="Submit" type="Submit" value="Submit" ></input>
 	</form>
+	<form id="userInfo" action="deleteUser.php" method="post" style="margin-left: 1%">
+		<h3>Delete User</h3>
+		<select name="username">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = "select username from IT350.".$userTable.";" ;
+        	$result = mysqli_query($db_handle,$query);
+    	}
+		foreach ($result as $username){
+			echo '<option value="'.$username['username'].'">'.$username['username'].'</option>';
+		}
+	?>
+	</select>
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+<form id="List All Items" action="listAllItems.php" method="post" style="margin-left: 1%">
+		<h3>List All items</h3>
+		<input id="Submit" type="Submit" value="Submit" ></input>
+		</form>
+<form id="Insert Item" action="insertItem.php" method="post" style="margin-left: 1%">
+		<h3>Insert Item</h3>
+		Item Name:
+		<br><input type="text" name="itemName">
+		<br>Item Description:
+		<br><input type="text" name="description">
+		<br>Item quantity:
+		<br><input type="number" name="quantity">
+		<br>Item Cost:
+		<br><input type="number" step="0.01" name="cost">
+		<br>Category
+		<br><select name="category">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select categoryId, name from Category;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$name.'</option>';
+	 		}
+	 		$query->close();
 
+		}
+	?>
+		<br><br><input id="Submit" type="Submit" value="Submit" ></input>
+		</form>
+		<form id="userInfo" action="deleteItem.php" method="post" style="margin-left: 1%">
+		<h3>Delete Item</h3>
+		<select name="item">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select itemId, itemName from Item;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$id." ".$name.'</option>';
+	 		}
+	 		$query->close();
+    	}
+	?>
+	</select>
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+	<form id="List All Items" action="addCategory.php" method="post" style="margin-left: 1%">
+		<h3>Add Category</h3>
+		Category Name:
+		<br><input type="text" name="categoryName">
+		<input id="Submit" type="Submit" value="Submit" ></input>
+		</form>
   </body>
 </html>
