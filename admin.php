@@ -132,6 +132,56 @@ if ($_SESSION['logged_in'] == NULL) {
 		Category Name:
 		<br><input type="text" name="categoryName">
 		<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+		<form id="List All Items" action="listAllFeedback.php" method="post" style="margin-left: 1%">
+		<h3>List All Feedback</h3>
+		<input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
+		<form id="List All Items" action="listAllReviews.php" method="post" style="margin-left: 1%">
+		<h3>List All Reviews</h3>
+		<input id="Submit" type="Submit" value="Submit" ></input>
+		</form>
+	<form id="List All Items" action="addProcessingCompany.php" method="post" style="margin-left: 1%">
+		<h3>Add Processing Company</h3>
+		Company Name:
+		<br><input type="text" name="companyName">
+		<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+	<form id="userInfo" action="deleteUser.php" method="post" style="margin-left: 1%">
+		<h3>Remove Processing Company</h3>
+		<select name="company">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select paymentTypeId, processingCompany from ProcessingCompany;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$id." ".$name.'</option>';
+	 		}
+	 		$query->close();
+		}
+	?>
+	</select>
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+	<form id="userInfo" action="viewOrder.php" method="post" style="margin-left: 1%">
+		<h3>View Customer Order</h3>
+		<select name="orderNumber">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select orderNumber, username from CustomerOrder;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$id." ".$name.'</option>';
+	 		}
+	 		$query->close();
+		}
+	?>
+	</select>
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
   </body>
 </html>

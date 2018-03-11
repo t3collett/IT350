@@ -31,7 +31,7 @@ if(isset($_POST)){
 	 	$category = filter_var($_POST['category'],
 	 								FILTER_SANITIZE_NUMBER_INT);
 	 	$cost = filter_var($_POST['cost'],
-	 								FILTER_SANITIZE_NUMBER_FLOAT);
+	 								FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION );
 	 	if(strlen($itemname) > 255||
 	 		strlen($description) > 516||
 	 		$category > PHP_INT_MAX||

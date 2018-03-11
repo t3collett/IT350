@@ -4,7 +4,21 @@ CREATE TABLE `IT350`.`ProcessingCompany` ( `paymentTypeId` INT NOT NULL AUTO_INC
 CREATE TABLE `IT350`.`ShoppingCart` ( `cartId` INT NOT NULL AUTO_INCREMENT , `username` VARCHAR(40) NOT NULL , `totalCost` INT NULL , PRIMARY KEY (`cartId`)) ENGINE = InnoDB;
 CREATE TABLE `IT350`.`List` ( `cartId` INT NOT NULL , `itemId` INT NOT NULL , `quantity` INT NOT NULL , PRIMARY KEY (`cartId`, `itemId`)) ENGINE = InnoDB;
 CREATE TABLE `IT350`.`Item` ( `itemId` INT NOT NULL AUTO_INCREMENT , `itemName` VARCHAR(255) NOT NULL , `description` VARCHAR(512) NOT NULL , `quantity` INT NOT NULL , `cost` DECIMAL NOT NULL , `categoryId` INT NOT NULL , PRIMARY KEY (`itemId`)) ENGINE = InnoDB;
-CREATE TABLE `IT350`.`Category` ( `categoryId` INT NOT NULL , `name` VARCHAR(40) NOT NULL ) ENGINE = InnoDB;
 CREATE TABLE `IT350`.`Review` ( `reviewId` INT NOT NULL AUTO_INCREMENT , `itemId` INT NOT NULL , `username` VARCHAR(40) NOT NULL , `description` VARCHAR(512) NOT NULL , PRIMARY KEY (`reviewId`)) ENGINE = InnoDB;
 CREATE TABLE `IT350`.`Feedback` ( `feedbackId` INT NOT NULL AUTO_INCREMENT , `orderNumber` INT NOT NULL , `description` VARCHAR(255) NOT NULL , PRIMARY KEY (`feedbackId`)) ENGINE = InnoDB;
-CREATE TABLE `IT350`.`CustomerOrder` ( `orderNumber` INT NOT NULL AUTO_INCREMENT , `trackingNumber` VARCHAR(10), `username` VARCHAR(40) NOT NULL , `paymentMethod` INT NOT NULL , `cartId` INT NOT NULL , `transactionDate` DATE NOT NULL , `totalCost` DECIMAL NOT NULL , PRIMARY KEY (`orderNumber`)) ENGINE = InnoDB;
+
+CREATE TABLE `IT350`.`Category` (
+  `categoryId` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `IT350`.`CustomerOrder` (
+  `orderNumber` int(11) NOT NULL,
+  `trackingNumber` varchar(10) DEFAULT NULL,
+  `username` varchar(40) NOT NULL,
+  `paymentMethod` int(11) NOT NULL,
+  `cartId` int(11) NOT NULL,
+  `transactionDate` date NOT NULL,
+  `fulfilled` date DEFAULT NULL,
+  `totalCost` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
