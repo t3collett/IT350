@@ -75,7 +75,7 @@ if(isset($_POST)){
 		} else {
 			$query = "INSERT INTO `User` (`username`, `password`, `firstname`,`lastname`, `email`,`address`,`phoneNumber`) VALUES ('".$username."', SHA1('".$password."'), '".$firstname."','".$lastname."', '".$email."','".$address."','".$phoneNumber."');";
 		    mysqli_query($db_handle,$query);
-		   	$result = mysqli_query($db_handle,"select username from IT350.".$userTable." where username = '".$username. "';");
+		   	$result = mysqli_query($db_handle,"select username, privilege from IT350.".$userTable." where username = '".$username. "';");
 		   	while ($row = mysqli_fetch_row($result))
  			{
     			session_start();

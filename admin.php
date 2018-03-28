@@ -4,6 +4,11 @@ if ($_SESSION['logged_in'] == NULL) {
     header("Location: login.php");
     exit();
 }
+$sessionInfo = $_SESSION['logged_in'];
+if($sessionInfo['privilege'] < 1){
+	header("Location: catalog.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +29,9 @@ if ($_SESSION['logged_in'] == NULL) {
      ?>
   </head>
   <body>
+  	<?php
+  		print_r($_SESSION['logged_in']);
+  	?>
 	<a href="logout.php\"> Logout </a>
 	<form id="userInfo" action="userQuery.php" method="post" style="margin-left: 1%">
 		<h3>UsertableQuery</h3>

@@ -16,7 +16,7 @@ if(isset($_POST)){
 		// $username = mysql_real_escape_string($username);
 		// $password = mysql_real_escape_string($password);
 	 	mysqli_set_charset($db_handle, "utf8");
-	 	$query = "select * from IT350.".$userTable." where username = '".$username. "' and password = SHA1('".$password."');" ;
+	 	$query = "select username, privilege from IT350.".$userTable." where username = '".$username. "' and password = SHA1('".$password."');" ;
 	 	//echo "<br>".$query."<br>";
 	 	$result = mysqli_query($db_handle,$query);
 	 	//echo $result."<br>";
@@ -28,7 +28,7 @@ if(isset($_POST)){
         	//echo "id: " . $row["userId"]. " - pass: " . $row["password"]. " " . $row["user_name"]. "<br>";
     		//}
     		session_start();
-    		$_SESSION['logged_in'] = $row['username'];
+    		$_SESSION['logged_in'] = $row;
 			//echo "session should have started";
 			//$_SESSION["id"] = $row["userId"];
 			//mysqli_query($db_handle,"UPDATE `Users` SET `logged_in` = '1' WHERE `Users`.`userId` = ".$row["userId"].";");
