@@ -15,7 +15,7 @@ print_r($_POST);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	<title>Admin</title>
+	<title>Catalog</title>
 
     <!-- Bootstrap -->
     <?php 
@@ -48,7 +48,27 @@ print_r($_POST);
 	?>	</select>
 		<input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
-<form id="Order Item" action="insertItem.php" method="post" style="margin-left: 1%">
+
+<form  action="addToCart.php" method="post" style="margin-left: 1%">
+		<h3>Add to Cart</h3>
+		<select name="itemId">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select itemId, itemName from Item;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$id." ".$name.'</option>';
+	 		}
+	 		$query->close();
+    	}
+	?>
+	</select>
+	<input type="number" name="quantity">
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+<form id="Order Item" action="addToCart.php" method="post" style="margin-left: 1%">
 		<h3>Order Item</h3>
 		<select name="item">
 	<?php
