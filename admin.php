@@ -114,7 +114,7 @@ if($sessionInfo['privilege'] < 1){
 	 		$query->close();
 
 		}
-	?>
+	?></select>
 		<br><br><input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
 		<form id="userInfo" action="deleteItem.php" method="post" style="margin-left: 1%">
@@ -135,6 +135,29 @@ if($sessionInfo['privilege'] < 1){
 	</select>
 	<input id="Submit" type="Submit" value="Submit" ></input>
 	</form>
+
+
+	<form  action="updateItemQuantity.php" method="post" style="margin-left: 1%">
+		<h3>Add to Inventory</h3>
+		<select name="itemId">
+	<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("select itemId, itemName from Item;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo '<option value="'.$id.'">'.$id." ".$name.'</option>';
+	 		}
+	 		$query->close();
+    	}
+	?>
+	</select>
+	<input type="number" name="quantity">
+	<input id="Submit" type="Submit" value="Submit" ></input>
+	</form>
+
+	
 	<form id="List All Items" action="addCategory.php" method="post" style="margin-left: 1%">
 		<h3>Add Category</h3>
 		Category Name:
@@ -191,5 +214,27 @@ if($sessionInfo['privilege'] < 1){
 	</select>
 	<input id="Submit" type="Submit" value="Submit" ></input>
 	</form>
+
+	<br>
+	<table border="1">
+		<tr>
+			<th>ItemId</th>
+			<th>Inventory Value</th>
+		</tr>
+		<?php
+		$db_handle = mysqli_connect($ipAddress ,$dbUser,$dbPassword ,$database);
+   		if($db_handle){
+        	$query = $db_handle->prepare("SELECT itemId, inventoryValue FROM `totalItemValue`;");
+        	$query->execute();
+	 		$query->bind_result($id,$name);
+	 		while( $query->fetch()){
+	 			echo "<tr><td>$id </td><td>$name</td></tr>";
+	 		}
+
+	 		$query->close();
+		}
+	?>
+
+	</table>
   </body>
 </html>
