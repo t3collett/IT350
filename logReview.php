@@ -14,14 +14,15 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if(isset($_POST) && isset($_POST['item']) && isset($_POST['review'])){
 	$itemId = $_POST['item'];
 	#print_r($_SESSION);
-	echo exec('whoami');
+	//echo exec('whoami');
 	$session = $_SESSION['logged_in'];
 	$user = $session['username'];
 	$myfile = fopen("review.txt", "w") or die("Unable to open file!");
 	fwrite($myfile, $_POST['review']);
 	fclose($myfile);
-	echo exec("python storeReview.py $itemId $user review.txt");
-	#passthru("python storeReview.py ". $itemId ." ".$user." review.txt",$output);
-	#echo $output;
+	//echo exec("python storeReview.py $itemId $user review.txt");
+	//echo passthru("python storeReview.py");
+	echo passthru("python storeReview.py ". $itemId ." ".$user." review.txt");
+	//echo $output;
 	echo '<br>review recorded';
 }

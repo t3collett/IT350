@@ -4,7 +4,8 @@ if ($_SESSION['logged_in'] == NULL) {
     header("Location: login.php");
     exit();
 }
-print_r($_POST);
+//print_r($_POST);
+
 ?>
 
 <!DOCTYPE html>

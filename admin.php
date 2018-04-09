@@ -30,7 +30,7 @@ if($sessionInfo['privilege'] < 1){
   </head>
   <body>
   	<?php
-  		print_r($_SESSION['logged_in']);
+  		//print_r($_SESSION['logged_in']);
   	?>
 	<a href="logout.php\"> Logout </a>
 	<form id="userInfo" action="userQuery.php" method="post" style="margin-left: 1%">

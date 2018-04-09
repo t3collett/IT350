@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import sys
 from pymongo import MongoClient
 
-print "i work"
 if len(sys.argv) == 4:
 	itemId = sys.argv[1]
 	username = sys.argv[2]
@@ -12,7 +11,6 @@ if len(sys.argv) == 4:
 
 	client = MongoClient('localhost',27017)
 	db = client['it350']
-	print 'connected to db..'
 	coll = db['fjellProducts']
 	coll.insert_one(
 		{
