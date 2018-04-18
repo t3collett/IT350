@@ -5,6 +5,4 @@ from pymongo import MongoClient
 
 client = MongoClient('localhost',27017)
 db = client['it350']
-print (db.command("dbstats"))
-#print (db.command("serverStatus"))
-
+print (db.command("serverStatus"))

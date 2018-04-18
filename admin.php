@@ -9,6 +9,10 @@ if($sessionInfo['privilege'] < 1){
 	header("Location: catalog.php");
     exit();
 }
+if($sessionInfo['privilege']  == 2){
+	header("Location: admindb.php");
+	exit();
+}
 ?>
 
 <!DOCTYPE html>

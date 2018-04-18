@@ -235,7 +235,7 @@ CREATE TABLE `ShoppingCart` (
   `username` varchar(40) NOT NULL,
   `totalCost` int(11) DEFAULT NULL,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +244,7 @@ CREATE TABLE `ShoppingCart` (
 
 LOCK TABLES `ShoppingCart` WRITE;
 /*!40000 ALTER TABLE `ShoppingCart` DISABLE KEYS */;
-INSERT INTO `ShoppingCart` VALUES (1,'unam',100),(2,'jk',0),(3,'zxc',0);
+INSERT INTO `ShoppingCart` VALUES (1,'unam',100),(2,'jk',0),(3,'zxc',0),(4,'asd',0);
 /*!40000 ALTER TABLE `ShoppingCart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +274,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES ('123','601f1889667efaebb33b8c12572835da3f027f78','va','va','asv','avsd','asdv@D.C',2),('asdf','601f1889667efaebb33b8c12572835da3f027f78','asdf','sadf','111-333-4444','\"fake address\"','asdf@d.c',1),('asdf11','sadfsadf','asdf','asdf','111-333-4444','\"fake address\"','asdf',0),('jk','as','ads','asdf','111-333-4444','\"fake address\"','s@d.c',0),('qwe','601f1889667efaebb33b8c12572835da3f027f78','yway','asydf','202','21e3 dsa','d@d.c',0),('unam','601f1889667efaebb33b8c12572835da3f027f78','t3','fakename','111-333-4444','\"fake address\"','em@l.e',2),('username','601f1889667efaebb33b8c12572835da3f027f78','first','last','phonenumber','addres','emai@ema.co',0),('va','601f1889667efaebb33b8c12572835da3f027f78','va','va','va','va','va@va.c',0),('zxc','601f1889667efaebb33b8c12572835da3f027f78','t','c','12','12 k2','S@C.Cs',0);
+INSERT INTO `User` VALUES ('123','601f1889667efaebb33b8c12572835da3f027f78','va','va','asv','avsd','asdv@D.C',2),('asd','601f1889667efaebb33b8c12572835da3f027f78','asd','asd','asd','ads','asd@g.c',1),('asdf','601f1889667efaebb33b8c12572835da3f027f78','asdf','sadf','111-333-4444','\"fake address\"','asdf@d.c',1),('asdf11','sadfsadf','asdf','asdf','111-333-4444','\"fake address\"','asdf',0),('jk','as','ads','asdf','111-333-4444','\"fake address\"','s@d.c',0),('qwe','601f1889667efaebb33b8c12572835da3f027f78','yway','asydf','202','21e3 dsa','d@d.c',0),('unam','601f1889667efaebb33b8c12572835da3f027f78','t3','fakename','111-333-4444','\"fake address\"','em@l.e',2),('username','601f1889667efaebb33b8c12572835da3f027f78','first','last','phonenumber','addres','emai@ema.co',0),('va','601f1889667efaebb33b8c12572835da3f027f78','va','va','va','va','va@va.c',0),('zxc','601f1889667efaebb33b8c12572835da3f027f78','t','c','12','12 k2','S@C.Cs',0);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -348,4 +348,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 10:24:59
+-- Dump completed on 2018-04-18 14:39:05
