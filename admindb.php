@@ -43,6 +43,10 @@ if($sessionInfo['privilege'] < 1){
 		<h3>backup MDB</h3>
 		<input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
+	<form id="backupElastic" action="backupElastic.php" method="post" style="margin-left: 1%">
+		<h3>backup Elastic Search</h3>
+		<input id="Submit" type="Submit" value="Submit" ></input>
+		</form>	
 	 <!-- <form id="restoreSQL" action="restoreSQL.php" method="post" style="margin-left: 1%"> 
 		<h3>restore SQL</h3>
 		<input id="Submit" type="Submit" value="Submit" ></input>
@@ -71,5 +75,11 @@ if($sessionInfo['privilege'] < 1){
 		<h3>usage MDB</h3>
 		<input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
+	<form id="usageEl" action="usageElastic.php" method="post" style="margin-left: 1%">
+		<h3>usage ElasticSearch</h3>
+		<input id="Submit" type="Submit" value="Submit" ></input>
+		</form>
+		<br>
+		<br>
   </body>
 </html>
