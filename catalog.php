@@ -4,7 +4,7 @@ if ($_SESSION['logged_in'] == NULL) {
     header("Location: login.php");
     exit();
 }
-//print_r($_POST);
+//print_r($_SESSION);
 
 ?>
 
@@ -26,6 +26,7 @@ if ($_SESSION['logged_in'] == NULL) {
      ?>
   </head>
   <body>
+  <a href="logout.php\"> Logout </a>
   <form id="List All Items" action="listAllItems.php" method="post" style="margin-left: 1%">
 		<h3>List All items</h3>
 		<input id="Submit" type="Submit" value="Submit" ></input>
@@ -137,6 +138,15 @@ if ($_SESSION['logged_in'] == NULL) {
 		<textarea rows="4" cols="50" name="review"></textarea>
 		<input id="Submit" type="Submit" value="Submit" ></input>
 		</form>
+<form action="feedback.php" method="post" style="margin-left: 1%">
+	<h3> Leave Feedback </h3>
+	<?php
+	echo "<input type=\"hidden\" name=\"username\" value=\"".$_SESSION['logged_in']['username']."\"></input>"; 	
+	?>
+	<textarea rows="4" cols="50" name="feedback"></textarea>
+	<input type="Submit" value="send Feedback"></input>
+	
+</form>
 
 </body>
 </html>
